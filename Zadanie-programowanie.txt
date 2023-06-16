@@ -1,0 +1,185 @@
+1.Algorytm potęgowania przy pomocy mnożenia:
+
+static int Potegowanie(int podstawa, int wykladnik)
+{
+    int wynik = 1;
+    for (int i = 0; i < wykladnik; i++)
+    {
+        wynik *= podstawa;
+    }
+    return wynik;
+}
+
+
+
+
+2.Algorytm generujący ciąg Fibonacciego:
+
+static void CiagFibonacciego(int n)
+{
+    int a = 0;
+    int b = 1;
+    Console.WriteLine(a);
+    Console.WriteLine(b);
+
+    for (int i = 2; i < n; i++)
+    {
+        int c = a + b;
+        Console.WriteLine(c);
+        a = b;
+        b = c;
+    }
+}
+
+
+3.Algorytm obliczania wartości m=(n!-k!)/k!:
+
+static int ObliczWartosc(int n, int k)
+{
+    int nSilnia = Silnia(n);
+    int kSilnia = Silnia(k);
+    int m = (nSilnia - kSilnia) / kSilnia;
+    return m;
+}
+
+static int Silnia(int liczba)
+{
+    int wynik = 1;
+    for (int i = 1; i <= liczba; i++)
+    {
+        wynik *= i;
+    }
+    return wynik;
+}
+
+
+4.Algorytm obliczania wartości oszczędności z uwzględnieniem oprocentowania i podatku Belki:
+
+
+static double ObliczOszczednosci(double kwotaPoczatkowa, double oprocentowanie, int liczbaMiesiecy)
+{
+    double oprocentowanieMiesieczne = oprocentowanie / 12 / 100;
+    double podatekBelki = 0.81; // Ustalony współczynnik podatku Belki na 19%
+
+    double kwotaKoncowa = kwotaPoczatkowa * Math.Pow(1 + oprocentowanieMiesieczne, liczbaMiesiecy);
+    double podatek = kwotaKoncowa - kwotaPoczatkowa;
+    double kwotaPoOpodatkowaniu = kwotaKoncowa - podatek * podatekBelki;
+
+    return kwotaPoOpodatkowaniu;
+}
+
+
+5. Algorytm szacujący wartość funkcji e^x przy użyciu szeregu Taylora:
+
+static double ObliczEx(double x, int n)
+{
+    double wynik = 0;
+    double potegaX = 1;
+    int silnia = 1;
+
+    for (int i = 0; i < n; i++)
+    {
+        wynik += potegaX / silnia;
+        potegaX *= x;
+        silnia *= (i + 1);
+    }
+
+    return wynik;
+}
+
+
+6. Algorytm sprawdzający, czy liczba x jest silnią liczby n:
+
+static bool CzySilnia(int x, out int n)
+{
+    n = 0;
+    int silnia = 1;
+
+    while (silnia <= x)
+    {
+        n++;
+        if (silnia == x)
+        {
+            return true;
+        }
+        silnia *= n;
+    }
+
+    return false;
+}
+
+
+7.Algorytm wypisujący wszystkie pary liczb naturalnych, których suma jest równa n:
+
+static void WypiszPary(int n)
+{
+    for (int i = 1; i < n; i++)
+    {
+        int drugaLiczba = n - i;
+        Console.WriteLine($"{i}, {drugaLiczba}");
+    }
+}
+
+
+8.Algorytm zgadywania liczby w przedziale 1-20 przez użytkownika:
+
+static void ZgadywanieLiczby()
+{
+    int dolnaGranica = 1;
+    int gornaGranica = 20;
+    int propozycja;
+
+    do
+    {
+        propozycja = (dolnaGranica + gornaGranica) / 2;
+        Console.WriteLine($"Czy liczba, o której myślisz, to {propozycja}? (Wpisz -1 jeśli jest mniejsza, 1 jeśli jest większa, 0 jeśli zgadłem)");
+        int odpowiedz = Convert.ToInt32(Console.ReadLine());
+
+        if (odpowiedz == -1)
+        {
+            gornaGranica = propozycja - 1;
+        }
+        else if (odpowiedz == 1)
+        {
+            dolnaGranica = propozycja + 1;
+        }
+        else if (odpowiedz == 0)
+        {
+            Console.WriteLine($"Odgadłem! Myślałeś o liczbie {propozycja}.");
+            break;
+        }
+    } while (true);
+}
+
+
+9.Algorytm odwracający kolejność cyfr w liczbie:
+
+static int OdwrocLiczbe(int liczba)
+{
+    int odwroconaLiczba = 0;
+
+    while (liczba > 0)
+    {
+        int cyfra = liczba % 10;
+        odwroconaLiczba = odwroconaLiczba * 10 + cyfra;
+        liczba /= 10;
+    }
+
+    return odwroconaLiczba;
+}
+
+
+10.Algorytm wypisujący osobno kolejne cyfry liczby, która ma przynajmniej 3 cyfry:
+
+static void WypiszCyfry(int liczba)
+{
+    while (liczba >= 100)
+    {
+        int cyfra = liczba % 10;
+        Console.WriteLine(cyfra);
+        liczba /= 10;
+    }
+}
+
+
+
